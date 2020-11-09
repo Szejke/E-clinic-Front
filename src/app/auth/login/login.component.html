@@ -1,0 +1,52 @@
+<mat-spinner *ngIf="isSpinnerVisible"></mat-spinner>
+<div class="forms">
+
+  <form [formGroup]="form" *ngIf="isFormVisible">
+    <img class="profile-img-card" src="../../../assets/images/avatar.png"/>
+    <div class="invalid-login" *ngIf="invalidLogin">
+      Nie udało się zalogować użytkownika.
+    </div>
+    <div class="valid-login" *ngIf="validLogin">
+      Logowanie pomyślne
+    </div>
+    <mat-form-field>
+      <input matInput placeholder="Email" formControlName="email"
+             [errorStateMatcher]="matcher">
+      <button mat-button *ngIf="form.controls.email.value" matSuffix mat-icon-button aria-label="Clear"
+              (click)="form.controls.email.setValue('')">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-hint>Field is required</mat-hint>
+      <mat-error *ngIf="form.controls.email.hasError('required')">
+        Login is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="form.controls.email.hasError('email')">
+        Email is <strong>invalid</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Hasło" formControlName="password"
+             [errorStateMatcher]="matcher" type="password">
+      <button mat-button *ngIf="form.controls.password.value" matSuffix mat-icon-button aria-label="Clear"
+              (click)="form.controls.password.setValue('')">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-hint>Field is required</mat-hint>
+      <mat-error *ngIf="form.controls.password.hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="form.controls.password.hasError('minLength')">
+        Min length of password is <strong>4</strong> chars
+      </mat-error>
+      <mat-error *ngIf="form.controls.password.hasError('maxLength')">
+        Max length of password is <strong>20</strong> chars
+      </mat-error>
+    </mat-form-field>
+
+    <button [disabled]="!form.valid" mat-raised-button color="primary" type="submit" (click)="login()">Zaloguj</button>
+  </form>
+  <button class="loginBtn loginBtn--google" (click)="gmailLogin()">
+    Login with Google
+  </button>
+</div>

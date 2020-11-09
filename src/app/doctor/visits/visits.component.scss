@@ -1,0 +1,10 @@
+.visits-dashboard {
+  display: flex;
+  app-visits-calendar {
+    width: 25%;
+  }
+  app-visits-list {
+    margin-left: 2%;
+    width: 72%;
+  }
+}

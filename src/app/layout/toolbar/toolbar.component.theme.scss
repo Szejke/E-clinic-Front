@@ -1,0 +1,11 @@
+@import '../../../../node_modules/@angular/material/theming';
+
+@mixin toolbar-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+
+  .toolbar__button {
+    background: mat-color($primary);
+    color: mat-color($primary, 50);
+  }
+}

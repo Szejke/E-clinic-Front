@@ -1,0 +1,17 @@
+<li class="sidenav__list-item" [ngClass]="{'sidenav__list-item-parent': hasChildren}">
+  <a (click)="isCollapsed = !isCollapsed"
+     [routerLink]="!hasChildren ? [menuItem.url] : []"
+     routerLinkActive="{{!hasChildren ? 'sidenav__list-item--active': 'active'}}"
+     class="sidenav__list-item--anchor">
+    <i class="material-icons">{{menuItem.icon}}</i>
+    {{menuItem.name}}
+    <i *ngIf="hasChildren"
+       [@iconChange]="isCollapsed"
+       class="material-icons sidenav__list-item--expand-icon">keyboard_arrow_down</i>
+  </a>
+
+  <div *ngIf="hasChildren" class="content" [@collapseChange]="!isCollapsed">
+    <ng-content select=".collapsible-content"></ng-content>
+    <app-side-nav-list [menuItems]="menuItem.subItems"></app-side-nav-list>
+  </div>
+</li>

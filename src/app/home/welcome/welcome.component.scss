@@ -1,0 +1,39 @@
+.welcome-container {
+  background: url("../../../assets/images/doctor-1149149_1280.jpg");
+  width: 100%;
+  height: 85vh;
+  color: darken(white, 5%);
+
+  .backdrop {
+    width: 100%;
+    height: 80vh;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .home-header {
+      font-size: 90px;
+      padding: 15% 0 30px 0;
+      font-weight: 300;
+      line-height: 10px;
+    }
+    .subtitle {
+      font-size: 30px;
+      padding: 20px 0;
+      margin-top: 20px;
+    }
+    .register-btn {
+
+    }
+    .login-row {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: row;
+      span {
+        margin-top: 10px;
+        margin-left: 20px;
+        font-size: 18px;
+      }
+    }
+  }
+}

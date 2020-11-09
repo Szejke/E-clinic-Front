@@ -1,0 +1,89 @@
+<div class="visits-container">
+  <mat-spinner *ngIf="spinnerVisible"></mat-spinner>
+
+  <div [hidden]="!isTableVisible">
+
+    <div class="example-header">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+    </div>
+
+    <mat-table #table [dataSource]="dataSource" matSort>
+
+      <ng-container matColumnDef="doctor">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Doktor</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{element.doctor.name}} {{element.doctor.surname}} {{element.doctor.specialization}}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Data wizyty</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{element.year}}-{{element.month < 10 ? '0' + (element.month+1) : (element.month+1)}}-{{element.day < 10 ? '0' + element.day : element.day}}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="visitTime">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Godzina wizyty</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{element.hour || 'brak'}} : {{(element.minutes == 0 ? '00' : (element.minutes < 10 ? '0' + element.minutes : element.minutes)) || 'brak'}}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="duration">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Czas trwania</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{element.duration}} minut
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="cena">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Cena</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{element.price}} PLN
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Status</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{element.status}}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="pay">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Płatność</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button [disabled]="element.price === element.payment.paid || isInFuture(element)" mat-raised-button color="primary" class="add-visit-btn" (click)="pay(element)">Zapłać</button>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="abort">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Anuluj</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button [disabled]="isInFuture(element)" mat-raised-button color="primary" class="add-visit-btn" (click)="abortVisit(element.id)">Odwołaj</button>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="postpone">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Przełóż</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button [disabled]="isInFuture(element)" mat-raised-button color="primary" class="add-visit-btn" (click)="postponeVisit(element)">Przełóż</button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+
+    <mat-paginator #paginator
+                   [pageSize]="10"
+                   [pageSizeOptions]="[5, 10, 20]">
+    </mat-paginator>
+
+  </div>
+</div>
+

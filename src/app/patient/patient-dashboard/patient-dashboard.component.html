@@ -1,0 +1,11 @@
+<mat-tab-group #tabGroup>
+  <mat-tab label="Wizyty">
+    <app-reserved-visits></app-reserved-visits>
+  </mat-tab>
+  <mat-tab label="Zarezerwuj wizytę">
+    <app-reserve-visit (reservedOk)="changeTab()"></app-reserve-visit>
+  </mat-tab>
+  <mat-tab label="Moje dane">
+    <app-patient-data></app-patient-data>
+  </mat-tab>
+</mat-tab-group>

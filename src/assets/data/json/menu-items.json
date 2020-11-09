@@ -1,0 +1,17 @@
+[
+  {
+    "url": "/",
+    "name": "Homepage",
+    "icon": "home"
+  },
+  {
+    "url": "/accounts",
+    "name": "Konta",
+    "icon": "accessibility"
+  },
+  {
+    "url": "/transfer",
+    "name": "Przelewy",
+    "icon": "style"
+  }
+]

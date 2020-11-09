@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Wizyta: {{data.day | date:short}} Godzina: {{data.visit.time}} Czas trwania:
+  {{data.visit.duration}} Status: {{data.visit.status}}</h1>
+<div class="mat-dialog-content">
+  <form [formGroup]="form">
+    <mat-form-field>
+      <textarea matInput placeholder="Recepta" formControlName="receipt" matTextareaAutosize matAutosizeMinRows="4"
+              matAutosizeMaxRows="5" [errorStateMatcher]="matcher"></textarea>
+      <button mat-button *ngIf="form.controls.receipt.value" matSuffix mat-icon-button aria-label="Clear"
+              (click)="form.controls.receipt.setValue('')">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea matInput placeholder="Diagnoza" formControlName="diagnose" matTextareaAutosize matAutosizeMinRows="4"
+                matAutosizeMaxRows="5" [errorStateMatcher]="matcher"></textarea>
+      <button mat-button *ngIf="form.controls.diagnose.value" matSuffix mat-icon-button aria-label="Clear"
+              (click)="form.controls.diagnose.setValue('')">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Zamknij</button>
+  <button mat-button cdkFocusInitial [disabled]="form.invalid" (click)="save()">Zapisz</button>
+</div>

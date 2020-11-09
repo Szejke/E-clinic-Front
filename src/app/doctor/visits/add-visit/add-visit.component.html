@@ -1,0 +1,70 @@
+<h1 mat-dialog-title>Dodaj wizyty</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field>
+      <mat-select placeholder="Godzina rozpoczęcia wizyt" formControlName="startTime">
+        <mat-option *ngFor="let time of startTimes" [value]="time" [disabled]="canChoose(time)">
+          <small>Godzina</small>
+          <span>{{ time }}</span>
+        </mat-option>
+      </mat-select>
+      <button mat-button *ngIf="form.controls.startTime.value" matSuffix mat-icon-button aria-label="Clear" (click)="form.controls.startTime.setValue('')">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-hint>Pole jest wymagane!</mat-hint>
+      <mat-error *ngIf="form.controls.startTime.hasError('required')">
+        Godzina rozpoczęcia wizyt jest <strong>wymagana</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Czas trwania wizyt" formControlName="visitDurationMinutes">
+        <mat-option *ngFor="let duration of visitDurations" [value]="duration">
+          <span>{{ duration }}</span>
+          <small>Minut</small>
+        </mat-option>
+      </mat-select>
+      <button mat-button *ngIf="form.controls.visitDurationMinutes.value" matSuffix mat-icon-button aria-label="Clear" (click)="form.controls.visitDurationMinutes.setValue('')">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-hint>Pole jest wymagane!</mat-hint>
+      <mat-error *ngIf="form.controls.visitDurationMinutes.hasError('required')">
+        Czas trwania wizyt jest <strong>wymagany</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Ilość wizyt" type="number" formControlName="numberOfVisits"
+             [errorStateMatcher]="matcher">
+      <button mat-button *ngIf="form.controls.numberOfVisits.value" matSuffix mat-icon-button aria-label="Clear" (click)="form.controls.numberOfVisits.setValue('')">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-hint>Pole jest wymagane!</mat-hint>
+      <mat-error *ngIf="form.controls.numberOfVisits.hasError('required')">
+        Ilość wizyt jest <strong>wymagana</strong>
+      </mat-error>
+      <mat-error *ngIf="form.controls.numberOfVisits.hasError('max')">
+        Ilość wizyt jest <strong>za duża</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Cena" type="number" formControlName="price"
+             [errorStateMatcher]="matcher">
+      <button mat-button *ngIf="form.controls.price.value" matSuffix mat-icon-button aria-label="Clear" (click)="form.controls.price.setValue('')">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-hint>Pole jest wymagane!</mat-hint>
+      <mat-error *ngIf="form.controls.price.hasError('required')">
+        Cena jest <strong>wymagana</strong>
+      </mat-error>
+      <mat-error *ngIf="form.controls.price.hasError('max')">
+        Cena jest <strong>za duża</strong>
+      </mat-error>
+      <mat-error *ngIf="form.controls.price.hasError('min')">
+        Cena jest <strong>za mała</strong>
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Zamknij</button>
+  <button mat-button cdkFocusInitial [disabled]="form.invalid" (click)="saveVisits()">Zapisz wizyty</button>
+</div>

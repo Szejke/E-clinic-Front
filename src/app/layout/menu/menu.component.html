@@ -1,0 +1,17 @@
+<button class="toolbar-menu" mat-icon-button [matMenuTriggerFor]="menu">
+  <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item [routerLink]="['patient/dashboard']">
+    <mat-icon>dialpad</mat-icon>
+    <span>Panel pacjenta</span>
+  </button>
+  <button mat-menu-item [routerLink]="['doctor/visits']">
+    <mat-icon>voicemail</mat-icon>
+    <span>Panel doktora</span>
+  </button>
+  <button mat-menu-item (click)="logout()">
+    <mat-icon>notifications_off</mat-icon>
+    <span>Logout</span>
+  </button>
+</mat-menu>

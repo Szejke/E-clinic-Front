@@ -1,0 +1,5 @@
+<div class="visits-dashboard">
+  <app-visits-calendar (dateEmitter)="chooseCurrentDay($event)"></app-visits-calendar>
+  <app-visits-list [day]="currentDay"></app-visits-list>
+</div>
+

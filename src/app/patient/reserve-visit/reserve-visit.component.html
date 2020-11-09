@@ -1,0 +1,91 @@
+<div class="visits-container">
+  <mat-spinner *ngIf="spinnerVisible"></mat-spinner>
+
+  <div [hidden]="!isTableVisible">
+
+    <div class="example-header">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Doktor">
+          <mat-option *ngFor="let doctor of doctors" [value]="doctor">
+            {{doctor.name}} {{doctor.surname}} : {{doctor.specialization}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [ngModel]="choosenDay" name="choosenDay" [matDatepicker]="picker" placeholder="Dzień wizyty">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <mat-table #table [dataSource]="dataSource" matSort>
+
+      <ng-container matColumnDef="doctor">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Doktor</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{element.doctor.name}} {{element.doctor.surname}} {{element.doctor.specialization}}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Data wizyty</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{element.year}}-{{element.month < 10 ? '0' + (element.month+1) : (element.month+1)}}-{{element.day < 10 ? '0' + element.day : element.day}}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="visitTime">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Godzina wizyty</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{element.hour < 10 ? '0' + element.hour : element.hour}}:{{element.minutes < 10 ? '0' + element.minutes : element.minutes}}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="duration">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Czas trwania</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{element.duration}} minut
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="cena">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Cena</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{element.price}} PLN
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Status</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{element.status}}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="reserve">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Zarezerwacja</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-raised-button color="primary" class="add-visit-btn" (click)="reserve(element.id)">Zarezerwuj</button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+
+    <mat-paginator #paginator
+                   [pageSize]="10"
+                   [pageSizeOptions]="[5, 10, 20]">
+    </mat-paginator>
+
+    <button class="pdf-button" mat-raised-button color="accent" *ngIf="anyVisitChecked" (click)="deleteVisits()">
+      Usuń
+    </button>
+
+  </div>
+</div>
+

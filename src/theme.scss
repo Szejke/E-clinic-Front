@@ -1,0 +1,18 @@
+@import '~@angular/material/theming';
+@import "app/layout/toolbar/toolbar.component.theme";
+@import "app/layout/side-nav/side-nav.component.theme";
+
+@include mat-core();
+
+$primary: mat-palette($mat-teal);
+$accent:  mat-palette($mat-blue-grey, A200, A100, A400);
+
+$warn:    mat-palette($mat-red);
+
+$theme: mat-light-theme($primary, $accent, $warn);
+
+
+@include angular-material-theme($theme);
+@include toolbar-theme($theme);
+@include side-nav-theme($theme);
+

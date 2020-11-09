@@ -1,0 +1,44 @@
+.sidenav__list-item {
+  text-align: -webkit-match-parent;
+  .sidenav__list-item--anchor {
+    box-sizing: border-box;
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 47px;
+    text-decoration: none;
+    transition: all .3s;
+    transition-property: all;
+    transition-duration: 0.3s;
+    transition-timing-function: initial;
+    transition-delay: initial;
+    padding: 0 16px;
+    position: relative;
+
+    &.sidenav__list-item--active {
+      background: #fafafa;
+      color: #3f51b5;
+    }
+
+    .material-icons {
+      font-size: 18px;
+      padding: 0 10px;
+    }
+  }
+}
+
+.sidenav__list-item--expand-icon {
+  float: right;
+  line-height: 47px;
+}
+
+.sidenav__list-item-parent {
+  cursor: pointer;
+
+  app-side-nav-list {
+    .sidenav__list-item--anchor {
+      position: relative;
+      padding: 0 20%;
+    }
+  }
+}
