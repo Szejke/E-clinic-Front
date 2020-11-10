@@ -11,6 +11,7 @@ export interface Visit {
   minutes?: number;
   duration?: number;
   status?: string;
+  time?: any;
   receipt?: string;
   diagnose?: string;
   doctor?: Doctor;

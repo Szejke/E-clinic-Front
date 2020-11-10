@@ -14,7 +14,7 @@ import {DetailsSnackBarComponent} from '../../doctor/visits/visits-list/visits-l
 export class ReserveVisitComponent implements AfterViewInit {
 
   spinnerVisible = true;
-
+  anyVisitChecked: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 

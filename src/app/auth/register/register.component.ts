@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
 
   form: FormGroup;
   hidePassword = false;
-
+  matcher: any;
   invalidLogin = false;
   validLogin = false;
 

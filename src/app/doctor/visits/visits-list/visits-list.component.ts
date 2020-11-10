@@ -15,7 +15,7 @@ import {Observable} from 'rxjs';
 export class VisitsListComponent implements AfterViewInit {
 
   spinnerVisible = true;
-
+  short: any;
   private _day: Date = new Date();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

@@ -12,6 +12,8 @@ import {receiptGenerator} from '../../../shared/generators/pdf.generator';
 })
 export class VisitDetailsComponent implements OnInit {
 
+  short:any;
+  time: any;
   form: FormGroup;
   matcher = new MyErrorStateMatcher();
 

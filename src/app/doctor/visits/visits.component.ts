@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class VisitsComponent implements OnInit {
 
   currentDay: Date = new Date();
+  time: any;
 
   constructor() { }
 

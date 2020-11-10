@@ -15,6 +15,7 @@ import {PostponeVisitComponent} from './postpone-visit/postpone-visit.component'
 export class ReservedVisitsComponent implements AfterViewInit {
   paymentUrl = 'https://www.przelewy24.pl/demo/demo.php';
   spinnerVisible = true;
+  applyFilter: any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
