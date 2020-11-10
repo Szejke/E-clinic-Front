@@ -6,6 +6,7 @@ For Doctor
 
 EMAIL
 Login: emedicalcliniccenter@gmail.com
+
 Hasło: medicalcenter123!@#
 
 
